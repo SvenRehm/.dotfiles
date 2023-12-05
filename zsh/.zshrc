@@ -21,6 +21,8 @@ compinit
 alias cds='asdad'
 bindkey -s ^f "./tmux-sessionizer\n"
 
+export PATH="/path/to/python:$PATH"
+
 
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -39,3 +41,10 @@ bindkey -s ^f "./tmux-sessionizer\n"
 
 # zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias python=/usr/bin/python3
+alias python=/usr/bin/python3
+alias python=/usr/bin/python3
