@@ -22,6 +22,8 @@ alias cds='asdad'
 bindkey -s ^f "./tmux-sessionizer\n"
 
 export PATH="/path/to/python:$PATH"
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
 
 
 # zstyle ':completion:*' auto-description 'specify: %d'

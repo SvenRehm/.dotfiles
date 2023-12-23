@@ -31,7 +31,8 @@ export BOGART=$HOME/work/bogart
 # addToPathFront $HOME/.local/scripts
 # addToPathFront $HOME/.local/bin
 # addToPathFront $HOME/.local/n/bin/
-# addToPathFront $HOME/.local/go/bin
+addToPathFront $HOME/.local/go/bin
+addToPathFront /usr/local/go/bin
 # addToPathFront $HOME/go/bin
 # addToPathFront $HOME/personal/sumneko/bin
 # addToPathFront $HOME/.deno/bin
