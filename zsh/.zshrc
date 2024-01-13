@@ -18,14 +18,21 @@ HISTFILE=~/.zsh_history
 autoload -Uz compinit
 compinit
 
-alias cds='asdad'
+alias zcon='cd ~/.dotfiles/zsh'
+
 bindkey -s ^f "./tmux-sessionizer\n"
+
+alias air='$(go env GOPATH)/bin/air'
+
+export GOPATH=$HOME
+export PATH=$PATH:$GOPATH
+
 
 export PATH="/path/to/python:$PATH"
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-
-
+source ~/.dotfiles/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh 
+plugins=(git dnf pass)
 # zstyle ':completion:*' auto-description 'specify: %d'
 # zstyle ':completion:*' completer _expand _complete _correct _approximate
 # zstyle ':completion:*' format 'Completing %d'
