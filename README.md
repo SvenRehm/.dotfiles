@@ -1,2 +1,2 @@
-use gnu stow
-install zsh autocomplete
+#use gnu stow
+#install zsh autocomplete
