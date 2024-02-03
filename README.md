@@ -2,12 +2,16 @@
 ```
 sudo apt-get install -y stow
 sudo apt install fzf
+
+Install oh-my-zsh now
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 cd ~/.dotfiles/zsh
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git
 
 ```
 
-# Howto use gnu stow
+# How to use gnu stow
 ```
 stow --adopt -vt ~ *
 stow --adopt -vt ~ */
