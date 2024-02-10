@@ -186,9 +186,19 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+
+-- no idea where to put this
+local Color, colors, Group, groups, styles = require('colorbuddy').setup {}
+Group.new('CursorLineNr', colors.primary, colors.background)
+
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
+--enable cursorline
+vim.o.cursorline = true
+--enable show only the number highlight
+vim.o.cursorlineopt = 'number'
 -- Make line numbers default
 vim.wo.number = true
 
