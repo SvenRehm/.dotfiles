@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -14,7 +15,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
+-- NOTE: Here is where you install your plugins.
 require('lazy').setup({
 
   -- Git related plugins
@@ -23,7 +24,7 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
+  "theprimeagen/vim-be-good",
   -- NOTE: This is where your plugins related to LSP can be installed.
   {
     -- LSP Configuration & Plugins
@@ -548,6 +549,9 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open File Tree' })
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-Down>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv")
+
 
 vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
