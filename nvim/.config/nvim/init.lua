@@ -1,5 +1,5 @@
 --[[
-
+  
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -345,7 +345,37 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
       require('telescope').setup {
+        defaults = {
+          git_worktrees = vim.g.git_worktrees,
+          prompt_prefix = '  ',
+          selection_caret = ' ',
+          path_display = { 'truncate' },
+          sorting_strategy = 'ascending',
+          layout_config = {
+            horizontal = {
+              prompt_position = 'top',
+              preview_width = 0.55,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+
+          mappings = {
+            i = {
+              ['<C-n>'] = actions.cycle_history_next,
+              ['<C-p>'] = actions.cycle_history_prev,
+              ['<C-j>'] = actions.move_selection_next,
+              ['<C-k>'] = actions.move_selection_previous,
+            },
+            n = { ['q'] = actions.close },
+          },
+        },
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -748,23 +778,19 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
-    priority = 1000, -- make sure to load this before all the other start plugins
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --
+  --     -- You can configure highlights by doing something like
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -854,6 +880,7 @@ require('lazy').setup({
     -- If you have a Nerd Font, set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons otherwise define a unicode icons table
     icons = vim.g.have_nerd_font and {} or {
+      right = '',
       cmd = '⌘',
       config = '🛠',
       event = '📅',
@@ -870,11 +897,33 @@ require('lazy').setup({
     },
   },
 })
+
+vim.api.nvim_set_keymap('i', 'zz', '<esc>', { noremap = true })
 -- no idea where to put this
-local Color, colors, Group, groups, styles = require('colorbuddy').setup {}
-Group.new('CursorLineNr', colors.primary, colors.background)
+local Color, colors2, Group, groups, styles = require('colorbuddy').setup {}
+Group.new('CursorLineNr', colors2.primary, colors2.background)
 -- require('toggleterm').setup {
 --   open_mapping = [[<c-/>]],
 -- }
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+local colors = require('catppuccin.palettes').get_palette()
+local TelescopeColor = {
+  TelescopeMatching = { fg = colors.flamingo },
+  TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+
+  TelescopePromptPrefix = { bg = colors.surface0 },
+  TelescopePromptNormal = { bg = colors.surface0 },
+  TelescopeResultsNormal = { bg = colors.mantle },
+  TelescopePreviewNormal = { bg = colors.mantle },
+  TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+  TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+  TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+  TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
+  TelescopeResultsTitle = { fg = colors.mantle },
+  TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
+}
+
+for hl, col in pairs(TelescopeColor) do
+  vim.api.nvim_set_hl(0, hl, col)
+end
