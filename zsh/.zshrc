@@ -82,8 +82,7 @@ ZSH_THEME="robbyrussell"
 
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-source ~/dotfiles/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-plugins=(git dnf pass)
+plugins=(git dnf pass composer symfony2)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,4 +111,21 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias python=/usr/bin/python3
+# alias python=/usr/bin/python3
+alias ll='ls -alFh'
+
+
+# nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# # pnpm
+# export PNPM_HOME="/home/njem/.local/share/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# # php /usr/local/bin/composer
+# export PATH="$PATH:$HOME/.composer/vendor/bin"
+# pnpm end
