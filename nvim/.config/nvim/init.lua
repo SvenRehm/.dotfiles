@@ -437,8 +437,8 @@ require('lazy').setup({
       -- comment pluging keymaps
       vim.keymap.set('n', '<leader>/', function()
         return vim.v.count == 0 and '<Plug>(comment_toggle_linewise_current)' or '<Plug>(comment_toggle_linewise_count)'
-      end, { expr = true })
-      vim.keymap.set('x', '<leader>/', '<Plug>(comment_toggle_linewise_visual)')
+      end, { expr = true, desc = 'Toggle comment line(s)' })
+      vim.keymap.set('x', '<leader>/', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Toggle comment line(s)' })
 
       -- Also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
