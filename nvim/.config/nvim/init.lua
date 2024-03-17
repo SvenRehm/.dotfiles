@@ -161,6 +161,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- vim.keymap.set('n', '<leader>ts', vim.cmd.Ex, { desc = 'Open File Tree' })
 vim.keymap.set('n', '<leader>ts', '<cmd>Oil<CR>', { desc = 'Open File Tree' })
 vim.keymap.set('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set('n', '<leader>gs', ':Neogit<CR>', { desc = 'Open Neogit' })
+vim.keymap.set('n', '<leader>gb', ':Telescope git_branches<CR>', { desc = 'Open Git Branches' })
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
