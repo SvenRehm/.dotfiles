@@ -169,6 +169,25 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>tm', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Open File Tree' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-Down>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('x', '<leader>p', [["_dP]])
+
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set('n', '<leader>Y', [["+Y]])
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
+vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-Down>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<C-Up>', '<cmd>cprev<CR>zz')
+vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
+vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+
 --Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -676,6 +695,7 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
+        svelte = { { 'prettierd', 'prettier' } },
         javascript = { { 'prettierd', 'prettier' } },
         php = { 'prettier' },
       },
@@ -792,6 +812,19 @@ require('lazy').setup({
       }
     end,
   },
+  -- {
+  --   'folke/tokyonight.nvim',
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   init = function()
+  --     -- Load the colorscheme here.
+  --     -- Like many other themes, this one has different styles, and you could load
+  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+  --     vim.cmd.colorscheme 'tokyonight-night'
+  --
+  --     -- You can configure highlights by doing something like
+  --     vim.cmd.hi 'Comment gui=none'
+  --   end,
+  -- },
 
   -- {
   --   'folke/tokyonight.nvim',
@@ -807,6 +840,7 @@ require('lazy').setup({
   --   end,
   -- },
 
+  { 'ggandor/leap.nvim' },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
@@ -826,7 +860,8 @@ require('lazy').setup({
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      -- sven
+      -- require('mini.surround').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -917,12 +952,10 @@ vim.api.nvim_set_keymap('i', 'zz', '<esc>', { noremap = true })
 -- no idea where to put this
 local Color, colors2, Group, groups, styles = require('colorbuddy').setup {}
 Group.new('CursorLineNr', colors2.primary, colors2.background)
--- require('toggleterm').setup {
---   open_mapping = [[<c-/>]],
--- }
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+
+require('catppuccin').setup {}
 local colors = require('catppuccin.palettes').get_palette()
+
 local TelescopeColor = {
   TelescopeMatching = { fg = colors.flamingo },
   TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
@@ -942,3 +975,12 @@ local TelescopeColor = {
 for hl, col in pairs(TelescopeColor) do
   vim.api.nvim_set_hl(0, hl, col)
 end
+
+vim.keymap.set('n', 's', '<Plug>(leap)')
+vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
+vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
+require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
+
+require('leap').opts.special_keys.prev_target = '<backspace>'
+require('leap').opts.special_keys.prev_group = '<backspace>'

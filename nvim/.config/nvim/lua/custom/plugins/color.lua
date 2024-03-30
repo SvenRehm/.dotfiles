@@ -1,8 +1,9 @@
 return {}
---   -- 'SvenRehm/njem.nvim',
---   -- config = function()
---   --   vim.cmd [[colorscheme tokyonight-njem]]
---   -- end,
+-- return {
+-- 'SvenRehm/njem.nvim',
+-- config = function()
+--   vim.cmd [[colorscheme tokyonight-njem]]
+-- end,
 --   'jesseleite/nvim-noirbuddy',
 --   dependencies = {
 --     { 'tjdevries/colorbuddy.nvim', branch = 'dev' },

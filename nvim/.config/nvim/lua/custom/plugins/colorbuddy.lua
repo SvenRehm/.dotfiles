@@ -1,1 +1,4 @@
-return { 'tjdevries/colorbuddy.nvim', branch = 'dev' }
+return {
+  'tjdevries/colorbuddy.nvim',
+  branch = 'dev',
+}
