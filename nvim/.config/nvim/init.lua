@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -270,15 +270,15 @@ require('lazy').setup({
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    -- opts = {
-    --   signs = {
-    --     add = { text = '+' },
-    --     change = { text = '~' },
-    --     delete = { text = '_' },
-    --     topdelete = { text = '‾' },
-    --     changedelete = { text = '~' },
-    --   },
-    -- },
+    opts = {
+      --   signs = {
+      --     add = { text = '+' },
+      --     change = { text = '~' },
+      --     delete = { text = '_' },
+      --     topdelete = { text = '‾' },
+      --     changedelete = { text = '~' },
+      --   },
+    },
   },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
@@ -695,9 +695,9 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        svelte = { { 'prettierd', 'prettier' } },
+        -- svelte = { { 'prettierd', 'prettier' } },
         javascript = { { 'prettierd', 'prettier' } },
-        php = { 'prettier' },
+        -- typescript = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -812,34 +812,41 @@ require('lazy').setup({
       }
     end,
   },
-  -- {
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   init = function()
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     vim.cmd.colorscheme 'tokyonight-night'
-  --
-  --     -- You can configure highlights by doing something like
-  --     vim.cmd.hi 'Comment gui=none'
-  --   end,
-  -- },
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000, -- make sure to load this before all the other start plugins
+    init = function()
+      -- Load the colorscheme here.
+      -- Like many other themes, this one has different styles, and you could load
+      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.cmd.colorscheme 'tokyonight-storm'
 
-  -- {
-  --   'folke/tokyonight.nvim',
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   init = function()
-  --     -- Load the colorscheme here.
-  --     -- Like many other themes, this one has different styles, and you could load
-  --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  --     vim.cmd.colorscheme 'tokyonight-night'
-  --
-  --     -- You can configure highlights by doing something like
-  --     vim.cmd.hi 'Comment gui=none'
-  --   end,
-  -- },
+      -- You can configure highlights by doing something like
+      -- vim.cmd.hi 'Comment gui=none'
+    end,
+    opts = {
+      terminal_colors = true,
+      styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = false },
+        keywords = { italic = false },
+        functions = {},
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = 'dark', -- style for sidebars, see below
+        floats = 'dark', -- style for floating windows
+      },
 
+      on_colors = function(colors)
+        -- colors.hint = colors.orange
+        -- colors.normal = colors.orange
+        colors.bg = '#101010'
+        -- colors.bg_dark = colors.orange
+        -- colors.error = '#ff0000'
+      end,
+    },
+  },
   { 'ggandor/leap.nvim' },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
