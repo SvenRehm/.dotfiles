@@ -3,10 +3,14 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PATH:/snap/bin"
+export NVM_DIR=~/.nvm
+ [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
+export PATH="/Users/username/anaconda3/bin:$PATH"
 setopt histignorealldups sharehistory
-
+conda config --set changeps1 False
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -82,7 +86,8 @@ ZSH_THEME="robbyrussell"
 
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-plugins=(git dnf pass composer symfony2)
+plugins=(git dnf pass zsh-autosuggestions)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,3 +134,18 @@ alias ll='ls -alFh'
 # pnpm end
 # php /usr/local/bin/composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/njem/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/njem/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/njem/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/njem/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+export PATH="/home/$USER/anaconda3/bin:$PATH"
