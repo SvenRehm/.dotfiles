@@ -8,9 +8,9 @@ export PATH="$PATH:/snap/bin"
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-export PATH="/Users/username/anaconda3/bin:$PATH"
 setopt histignorealldups sharehistory
-conda config --set changeps1 False
+
+
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
@@ -147,5 +147,8 @@ else
     fi
 fi
 unset __conda_setup
+
+export PATH="/Users/username/anaconda3/bin:$PATH"
+conda config --set changeps1 False
 
 export PATH="/home/$USER/anaconda3/bin:$PATH"
