@@ -86,7 +86,7 @@ ZSH_THEME="robbyrussell"
 
 bindkey '^[[1;5D' backward-word
 bindkey '^[[1;5C' forward-word
-plugins=(git dnf pass zsh-autosuggestions)
+plugins=(git dnf pass zsh-autosuggestions zsh-nvm)
 
 
 source $ZSH/oh-my-zsh.sh
