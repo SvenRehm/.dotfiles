@@ -27,3 +27,13 @@ end)
 vim.keymap.set("n", "<leader>o", function()
   harpoon:list():select(4)
 end)
+
+vim.keymap.del("n", "<leader>/")
+
+vim.keymap.set("n", "<leader>/", function()
+  return vim.v.count == 0 and "<Plug>(comment_toggle_linewise_current)" or "<Plug>(comment_toggle_linewise_count)"
+end, { expr = true, desc = "Toggle comment line(s)" })
+vim.keymap.set("x", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment line(s)" })
+
+vim.keymap.set("n", "}", "}zz")
+vim.keymap.set("n", "{", "{zz")
