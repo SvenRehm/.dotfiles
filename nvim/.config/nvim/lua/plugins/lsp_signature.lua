@@ -1,7 +1,9 @@
 return {
   "ray-x/lsp_signature.nvim",
   event = "VeryLazy",
-  opts = {},
+  opts = {
+    doc_lines = 0,
+  },
   config = function(_, opts)
     require("lsp_signature").setup(opts)
   end,
