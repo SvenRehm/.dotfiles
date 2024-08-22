@@ -114,24 +114,24 @@ require('lazy').setup({
     },
   },
 
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').add {
-        { '<leader>c', group = '[C]ode' },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      }
-    end,
-  },
+  -- {
+  --   'folke/which-key.nvim',
+  --   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  --   config = function() -- This is the function that runs, AFTER loading
+  --     require('which-key').setup()
+  --
+  --     -- Document existing key chains
+  --     require('which-key').add {
+  --       { '<leader>c', group = '[C]ode' },
+  --       { '<leader>d', group = '[D]ocument' },
+  --       { '<leader>r', group = '[R]ename' },
+  --       { '<leader>s', group = '[S]earch' },
+  --       { '<leader>w', group = '[W]orkspace' },
+  --       { '<leader>t', group = '[T]oggle' },
+  --       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+  --     }
+  --   end,
+  -- },
 
   {
     'nvim-telescope/telescope.nvim',
@@ -652,62 +652,42 @@ require('lazy').setup({
   change_detection = {
     notify = false,
   },
-}, {
-  ui = {
-    -- If you have a Nerd Font, set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      right = '',
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
 })
 
 vim.api.nvim_set_keymap('i', 'zz', '<esc>', { noremap = true })
 
-local colorbuddy = require 'colorbuddy'
-local Color = colorbuddy.Color
-local colors2 = colorbuddy.colors
-local Group = colorbuddy.Group
-local groups = colorbuddy.groups
-local styles = colorbuddy.styles
+-- local colorbuddy = require 'colorbuddy'
+-- local Color = colorbuddy.Color
+-- local colors2 = colorbuddy.colors
+-- local Group = colorbuddy.Group
+-- local groups = colorbuddy.groups
+-- local styles = colorbuddy.styles
 
-Group.new('CursorLineNr', colors2.primary, colors2.background)
+-- Group.new('Normal', colors2.primary, '#fffff')
+-- Group.new('CursorLineNr', colors2.primary, colors2.background)
 
-require('catppuccin').setup {}
-local colors = require('catppuccin.palettes').get_palette()
-
-local TelescopeColor = {
-  TelescopeMatching = { fg = colors.flamingo },
-  TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
-
-  TelescopePromptPrefix = { bg = colors.surface0 },
-  TelescopePromptNormal = { bg = colors.surface0 },
-  TelescopeResultsNormal = { bg = colors.mantle },
-  TelescopePreviewNormal = { bg = colors.mantle },
-  TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
-  TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-  TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
-  TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
-  TelescopeResultsTitle = { fg = colors.mantle },
-  TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
-}
-
-for hl, col in pairs(TelescopeColor) do
-  vim.api.nvim_set_hl(0, hl, col)
-end
+-- require('catppuccin').setup {}
+-- local colors = require('catppuccin.palettes').get_palette()
+--
+-- local TelescopeColor = {
+--   TelescopeMatching = { fg = colors.flamingo },
+--   TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
+--
+--   TelescopePromptPrefix = { bg = colors.surface0 },
+--   TelescopePromptNormal = { bg = colors.surface0 },
+--   TelescopeResultsNormal = { bg = colors.mantle },
+--   TelescopePreviewNormal = { bg = colors.mantle },
+--   TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+--   TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+--   TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
+--   TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
+--   TelescopeResultsTitle = { fg = colors.mantle },
+--   TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
+-- }
+--
+-- for hl, col in pairs(TelescopeColor) do
+--   vim.api.nvim_set_hl(0, hl, col)
+-- end
 
 vim.api.nvim_set_hl(0, 'LeapBackdrop', { fg = '#4f4f4f' })
 vim.api.nvim_set_hl(0, 'LeapMatch', {
@@ -724,28 +704,6 @@ vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
 require('leap').opts.special_keys.prev_target = '<backspace>'
 require('leap').opts.special_keys.prev_group = '<backspace>'
-
-local harpoon = require 'harpoon'
-harpoon:setup()
-
-vim.keymap.set('n', '<leader>a', function()
-  harpoon:list():add()
-end)
-vim.keymap.set('n', '<leader>l', function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-
-vim.keymap.set('n', '<leader>n', function()
-  harpoon:list():select(1)
-end)
-vim.keymap.set('n', '<leader>e', function()
-  harpoon:list():select(2)
-end)
-vim.keymap.set('n', '<leader>i', function()
-  harpoon:list():select(3)
-end)
-vim.keymap.set('n', '<leader>o', function()
-  harpoon:list():select(4)
-end)
+require 'customtheme.njem'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
