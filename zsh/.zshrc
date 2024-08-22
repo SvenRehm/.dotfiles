@@ -5,6 +5,9 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PATH:/snap/bin"
+export PATH="$PATH:/home/njem/.local/bin"
+
+
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
@@ -134,6 +137,8 @@ alias ll='ls -alFh'
 # pnpm end
 # php /usr/local/bin/composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+sudo /etc/init.d/dbus start &> /dev/null
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/njem/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -152,3 +157,11 @@ export PATH="/Users/username/anaconda3/bin:$PATH"
 conda config --set changeps1 False
 
 export PATH="/home/$USER/anaconda3/bin:$PATH"
+eval "$(zoxide init zsh)"
+
+# bun completions
+[ -s "/home/njem/.bun/_bun" ] && source "/home/njem/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
