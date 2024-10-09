@@ -5,17 +5,22 @@ local Group = colorbuddy.Group
 local groups = colorbuddy.groups
 local styles = colorbuddy.styles
 
-Color.new('primary', '#2d75eb')
-Color.new('secondary', '#2d75eb')
+colorbuddy.colorscheme 'nani'
+-- Color.new('primary', '#2d75eb')
+-- Color.new('secondary', '#2d75eb')
 Color.new('text', '#2d75eb')
-Color.new('function', '#2d75eb')
+-- Color.new('nani', '#000000')
+-- Color.new('function', '#000814')
 
 Group.new('CursorLineNr', colors.primary, colors.background)
 Group.new('String', colors.primary, colors.background)
 -- Group.new('Normal', colors.noir_4, colors.background)
+-- Group.new('Normal', colors.background, colors.background)
 -- Group.new('Search', colors.noir_9, colors.noir_0)
 -- Group.new('IncSearch', colors.noir_9, colors.noir_0)
-Group.new('Visual', nil, colors.primary)
+--
+-- Group.new('Visual', nil, colors.primary)
+-- Group.new('Visual', nil, colors.nani)
 -- Group.new('SignColumn', nil, colors.background)
 -- Group.new('LineNr', colors.noir_8, colors.background)
 -- Group.new('EndOfBuffer', colors.noir_8, nil)
@@ -42,3 +47,4 @@ local TelescopeColor = {
 for hl, col in pairs(TelescopeColor) do
   vim.api.nvim_set_hl(0, hl, col)
 end
+-- vim.cmd.colorscheme 'catppuccin-macchiato'
