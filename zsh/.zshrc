@@ -11,7 +11,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-bindkey -s ^f "~/tmux-sessionizer\n"
+bindkey -s ^f "cd \$(find ~/dev -mindepth 1 -maxdepth 1 -type d | fzf)^M"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

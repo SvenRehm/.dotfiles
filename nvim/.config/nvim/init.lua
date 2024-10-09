@@ -105,15 +105,32 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        -- add = { text = '+' },
+        -- change = { text = '~' },
+        -- delete = { text = '_' },
+        -- topdelete = { text = '‾' },
+        -- changedelete = { text = '~' },
       },
     },
   },
-
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show { global = false }
+        end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
+  },
   -- {
   --   'folke/which-key.nvim',
   --   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -475,6 +492,8 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         -- You can use 'stop_after_first' to run the first available formatter from the list
+
+        json = { 'prettier' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
       },
@@ -704,6 +723,9 @@ vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
 require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
 require('leap').opts.special_keys.prev_target = '<backspace>'
 require('leap').opts.special_keys.prev_group = '<backspace>'
-require 'customtheme.njem'
+-- require 'customtheme.njem'
+-- vim.cmd.colorscheme 'njem'
+-- vim.cmd.colorscheme 'gruvbuddy'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
