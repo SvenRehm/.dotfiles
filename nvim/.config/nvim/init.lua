@@ -284,9 +284,9 @@ require('lazy').setup({
           if vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
             return
           end
-          require('lsp_signature').on_attach({
-            -- ... setup options here ...
-          }, bufnr)
+          -- require('lsp_signature').on_attach({
+          --   -- ... setup options here ...
+          -- }, bufnr)
         end,
       })
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -724,6 +724,7 @@ require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
 require('leap').opts.special_keys.prev_target = '<backspace>'
 require('leap').opts.special_keys.prev_group = '<backspace>'
 -- require 'customtheme.njem'
+-- require 'customtheme.search'
 -- vim.cmd.colorscheme 'njem'
 -- vim.cmd.colorscheme 'gruvbuddy'
 
