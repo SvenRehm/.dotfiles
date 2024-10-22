@@ -757,6 +757,6 @@ require('leap').opts.special_keys.prev_group = '<backspace>'
 -- require 'customtheme.search'
 -- vim.cmd.colorscheme 'njem'
 -- vim.cmd.colorscheme 'gruvbuddy'
-
+require('hardtime').setup()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
