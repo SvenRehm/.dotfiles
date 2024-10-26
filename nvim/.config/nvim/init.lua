@@ -32,6 +32,8 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+--paste into nothing
+vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without replacing clipboard content' })
 vim.keymap.set('n', '-', '<cmd>Oil<CR>', { desc = 'Open File Tree' })
 vim.keymap.set('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 vim.keymap.set('n', '<leader>gs', ':Neogit<CR>', { desc = 'Open Neogit' })
@@ -86,6 +88,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- inserst enter with 'o' under comment
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  command = 'set formatoptions-=cro',
 })
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
