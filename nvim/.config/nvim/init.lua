@@ -7,10 +7,7 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
-
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.breakindent = true
 vim.opt.undofile = true
@@ -529,8 +526,10 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
 
         json = { 'prettier' },
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
+        html = { 'prettierd' },
+        javascript = { 'prettierd' },
+        svelte = { 'prettierd' },
+        typescript = { 'prettierd' },
       },
     },
   },
@@ -764,6 +763,6 @@ require('leap').opts.special_keys.prev_group = '<backspace>'
 -- require 'customtheme.search'
 -- vim.cmd.colorscheme 'njem'
 -- vim.cmd.colorscheme 'gruvbuddy'
-require('hardtime').setup()
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
