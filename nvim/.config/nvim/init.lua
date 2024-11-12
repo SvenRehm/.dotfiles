@@ -101,6 +101,7 @@ if not vim.uv.fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
+vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
 
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -709,41 +710,13 @@ require('lazy').setup({
   },
 })
 
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+  dofile(vim.g.base46_cache .. v)
+end
+--chadrc file
+require 'chadrc'
+
 vim.api.nvim_set_keymap('i', 'zz', '<esc>', { noremap = true })
-
--- local colorbuddy = require 'colorbuddy'
--- local Color = colorbuddy.Color
--- local colors2 = colorbuddy.colors
--- local Group = colorbuddy.Group
--- local groups = colorbuddy.groups
--- local styles = colorbuddy.styles
-
--- Group.new('Normal', colors2.primary, '#fffff')
--- Group.new('CursorLineNr', colors2.primary, colors2.background)
-
--- require('catppuccin').setup {}
--- local colors = require('catppuccin.palettes').get_palette()
---
--- local TelescopeColor = {
---   TelescopeMatching = { fg = colors.flamingo },
---   TelescopeSelection = { fg = colors.text, bg = colors.surface0, bold = true },
---
---   TelescopePromptPrefix = { bg = colors.surface0 },
---   TelescopePromptNormal = { bg = colors.surface0 },
---   TelescopeResultsNormal = { bg = colors.mantle },
---   TelescopePreviewNormal = { bg = colors.mantle },
---   TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
---   TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
---   TelescopePreviewBorder = { bg = colors.mantle, fg = colors.mantle },
---   TelescopePromptTitle = { bg = colors.pink, fg = colors.mantle },
---   TelescopeResultsTitle = { fg = colors.mantle },
---   TelescopePreviewTitle = { bg = colors.green, fg = colors.mantle },
--- }
---
--- for hl, col in pairs(TelescopeColor) do
---   vim.api.nvim_set_hl(0, hl, col)
--- end
-
 vim.api.nvim_set_hl(0, 'LeapBackdrop', { fg = '#4f4f4f' })
 vim.api.nvim_set_hl(0, 'LeapMatch', {
   fg = 'white',
