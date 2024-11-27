@@ -67,13 +67,15 @@ local function full_path()
 end
 
 return {
-
   'nvim-lualine/lualine.nvim',
-  event = 'VeryLazy',
+  -- event = 'VeryLazy',
+  -- priority = 1000,
   opts = function()
     return {
       require('lualine').setup {
         options = {
+          --- @usage 'rose-pine' | 'rose-pine-alt'
+          theme = 'rose-pine',
           icons_enabled = true,
           disabled_filetypes = {},
           section_separators = {},

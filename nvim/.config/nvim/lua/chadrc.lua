@@ -7,7 +7,8 @@ local M = {}
 
 M.base46 = {
   -- theme = 'monochrome',
-  theme = 'mountain',
+  -- theme = 'mountain',
+  theme = 'rosepine',
 
   -- theme = 'poimandres',
   -- hl_override = {
@@ -22,8 +23,8 @@ M.ui = {
   },
 
   statusline = {
-    enabled = true,
-    -- enabled = false,
+    -- enabled = true,
+    enabled = false,
     -- theme = 'minimal',
     -- separator_style = "default",
     -- order = { "mode", "f", "git", "%=", "lsp_msg", "%=", "lsp", "cwd", "xyz", "abc" },
