@@ -26,6 +26,45 @@
 --     c = { fg = colors.white },
 --   },
 -- }
+local function last_three_dirs()
+  local full_path = vim.fn.expand '%:p:h' -- Get the directory of the current file
+  local parts = vim.split(full_path, '/') -- Split the path by '/'
+
+  -- Get the last three directory names
+  local dir_count = #parts
+  local last_three = {}
+
+  -- Add the last three directories to the table
+  for i = dir_count - 2, dir_count do
+    if i >= 1 then -- Ensure we don't go to index 0
+      table.insert(last_three, parts[i])
+    end
+  end
+
+  return table.concat(last_three, '/') .. '/' .. vim.fn.expand '%:t' -- Append filename
+end
+
+local function last_two_dirs()
+  local full_path = vim.fn.expand '%:p:h' -- Get the directory of the current file
+  local parts = vim.split(full_path, '/') -- Split the path by '/'
+
+  -- Get the last two directory names
+  local dir_count = #parts
+  local last_two = {}
+
+  if dir_count >= 2 then
+    table.insert(last_two, parts[dir_count - 1]) -- Last directory
+    table.insert(last_two, parts[dir_count]) -- Current directory
+  elseif dir_count == 1 then
+    table.insert(last_two, parts[1]) -- Only one directory available
+  end
+
+  return table.concat(last_two, '/') .. '/' .. vim.fn.expand '%:t' -- Append filename
+end
+
+local function full_path()
+  return vim.fn.expand '%:p' -- Get the full path of the current file
+end
 
 return {
 
@@ -33,7 +72,6 @@ return {
   event = 'VeryLazy',
   opts = function()
     return {
-
       require('lualine').setup {
         options = {
           icons_enabled = true,
@@ -46,7 +84,9 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = { 'branch' },
-          lualine_c = { 'filename' },
+          -- lualine_c = { 'filename' },
+          -- lualine_c = { last_two_dirs },
+          lualine_c = { last_three_dirs },
           lualine_x = { 'diagnostics', 'diff', 'filetype' },
           lualine_y = { 'location' },
           lualine_z = { 'progress' },
