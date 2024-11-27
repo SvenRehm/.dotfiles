@@ -728,7 +728,7 @@ vim.keymap.set('n', 's', '<Plug>(leap)')
 vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
 vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
 vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
-
+vim.keymap.set('i', 'ii', '<esc>', { noremap = true })
 require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
 require('leap').opts.special_keys.prev_target = '<backspace>'
 require('leap').opts.special_keys.prev_group = '<backspace>'
