@@ -474,8 +474,13 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format lua code
+        'stylua',
         'prettier',
+        'prettierd',
+        'svelte-language-server',
+        'vtsls',
+        'tailwindcss-language-server',
+        'intelephense',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -728,7 +733,6 @@ vim.keymap.set('n', 's', '<Plug>(leap)')
 vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
 vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
 vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
-vim.keymap.set('i', 'ii', '<esc>', { noremap = true })
 require('leap').opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
 require('leap').opts.special_keys.prev_target = '<backspace>'
 require('leap').opts.special_keys.prev_group = '<backspace>'
