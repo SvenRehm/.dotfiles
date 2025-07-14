@@ -11,7 +11,26 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-bindkey -s ^f "cd \$(find ~/dev -mindepth 1 -maxdepth 1 -type d | fzf)^M"
+# bindkey -s ^f "cd \$(find ~/dev ~/dotfiles/nvim/.config/ ~/dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)^M"
+function cd_fzf() {
+  local dir
+  dir=$(find ~/dev ~/dotfiles/nvim/.config/ ~/dotfiles -mindepth 1 -maxdepth 1 -type d | fzf)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+    zle reset-prompt
+  fi
+}
+zle -N cd_fzf
+bindkey '^f' cd_fzf
+export PATH="$HOME/.local/bin:$PATH"
+
+function switch-to-fg {
+	fg
+}
+zle -N switch-to-fg
+bindkey -M viins '^Z' switch-to-fg
+bindkey -M vicmd '^Z' switch-to-fg
+bindkey -M emacs '^Z' switch-to-fg
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -86,6 +105,9 @@ plugins=(git dnf pass zsh-autosuggestions zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH=$PATH:/snap/bin
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -129,3 +151,10 @@ alias ll='ls -alFh'
 # pnpm end
 # php /usr/local/bin/composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# bun completions
+[ -s "/home/njem/.bun/_bun" ] && source "/home/njem/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
