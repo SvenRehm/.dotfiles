@@ -1,5 +1,3 @@
--- local config = vim.fn.stdpath("config")
--- package.path = package.path .. ";" .. config .. "/?.lua;" .. config .. "/?/init.lua"
 require("core.autocmds")
 require("core.options")
 require("core.keymaps")

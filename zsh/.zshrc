@@ -1,9 +1,13 @@
 # If you come from bash you might have to change your $PATH.
+
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$PATH:/snap/bin"
+export PATH="$HOME/.local/scripts:$PATH"
+# export PATH="/home/njem/miniconda3/bin:$PATH"  # commented out by conda initialize
+
 
 setopt histignorealldups sharehistory
 
@@ -11,7 +15,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-bindkey -s ^f "cd \$(find ~/dev -mindepth 1 -maxdepth 1 -type d | fzf)^M"
+bindkey -s ^f "cd \$(find ~/dev ~/dotfiles/  ~/dotfiles/nvim/.config -mindepth 1 -maxdepth 1 -type d | fzf)^M"
+alias air='$(go env GOPATH)/bin/air'
+alias wails='$(go env GOPATH)/bin/wails'
+alias -g wf="~/windsurf-launcher.sh ."
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -129,3 +136,29 @@ alias ll='ls -alFh'
 # pnpm end
 # php /usr/local/bin/composer
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+
+# bun completions
+[ -s "/home/njem/.bun/_bun" ] && source "/home/njem/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# opencode
+export PATH=/home/njem/.opencode/bin:$PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/njem/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/njem/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/njem/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/njem/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
