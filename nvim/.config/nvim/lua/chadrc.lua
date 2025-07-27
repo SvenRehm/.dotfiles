@@ -6,10 +6,9 @@
 local M = {}
 
 M.base46 = {
-	-- theme = 'monochrome',
-	-- theme = 'mountain',
+	-- theme = "monochrome",
+	-- theme = "mountain",
 	-- theme = "rosepine",
-
 	theme = "poimandres",
 	-- hl_override = {
 	-- 	Comment = { italic = true },
